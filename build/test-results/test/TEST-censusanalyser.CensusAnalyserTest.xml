@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="censusanalyser.CensusAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-03T13:31:45" hostname="admin1-Lenovo-Product" time="2.943">
+<testsuite name="censusanalyser.CensusAnalyserTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-03-04T05:52:35" hostname="admin1-Lenovo-Product" time="0.247">
   <properties/>
-  <testcase name="loadThe_Indian_States_Code_Information_from_csvFile" classname="censusanalyser.CensusAnalyserTest" time="2.943"/>
+  <testcase name="givenIndianCensusCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.196"/>
+  <testcase name="givenIndiaCensusData_WithWrongFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.008"/>
+  <testcase name="loadThe_Indian_States_Code_Information_from_csvFile" classname="censusanalyser.CensusAnalyserTest" time="0.039"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
