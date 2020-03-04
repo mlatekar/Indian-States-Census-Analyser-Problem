@@ -1,13 +1,11 @@
 package censusanalyser;
 
-public class CensusAnalyserException extends Exception {
-
+public class CensusAnalyserException extends RuntimeException {
     enum ExceptionType {
-        CENSUS_FILE_PROBLEM,UNABLE_TO_Pass
+        CENSUS_FILE_PROBLEM,UNABLE_TO_PASS,NO_CENSUS_DATA
     }
 
     ExceptionType type;
-
     public CensusAnalyserException(String message, ExceptionType type) {
         super(message);
         this.type = type;
