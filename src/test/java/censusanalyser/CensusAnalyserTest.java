@@ -45,8 +45,8 @@ public class CensusAnalyserTest {
     public void loadThe_Indian_States_Code_Information_from_csvFile() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
-            int numOfRecords = censusAnalyser.loadIndianCensusCode(INDIAN_STATE_CSV_FILE_PATH);
+            int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH,INDIAN_STATE_CSV_FILE_PATH);
+            //int numOfRecords = censusAnalyser.loadIndianCensusCode(INDIAN_STATE_CSV_FILE_PATH);
             Assert.assertEquals(29,numOfRecords);
         } catch (CensusAnalyserException e) {
 
