@@ -18,12 +18,9 @@ public class CensusAnalyser {
 
         this.censusCSVMap=new HashMap<>();
     }
-    public int loadIndiaCensusData(String... csvFilePath) throws CensusAnalyserException {
-        censusCSVMap=new CensusLoader().loadCensusData(IndianCensusCSV.class,csvFilePath);
-        return censusCSVMap.size();
-    }
-    public int loadUSCensusData(String... csvFilePath) {
-        censusCSVMap= new CensusLoader().loadCensusData(USCensusCSV.class,csvFilePath);
+    public enum Country{INDIA,US;}
+    public int loadCensusData(Country country,String... csvFilePath) throws CensusAnalyserException {
+        censusCSVMap=new CensusLoader().loadCensusData(country,csvFilePath);
         return censusCSVMap.size();
     }
 
@@ -41,12 +38,12 @@ public class CensusAnalyser {
         String sortedStateCensus=new Gson().toJson(censusCSVList);
         return sortedStateCensus;
     }
-    private  void sort(Comparator <CensusDTO> censusCSVComparator){
+    private  void sort(Comparator <CensusDTO> censusCSVComparator) {
         for (int i=0; i<censusCSVList.size()-1; i++){
             for (int j=0; j<censusCSVList.size()-1; j++){
                 CensusDTO census1=censusCSVList.get(j);
                 CensusDTO census2=censusCSVList.get(j+1);
-                if (censusCSVComparator.compare(census1,census2)>0){
+                if (censusCSVComparator.compare(census1,census2)>0) {
                     censusCSVList.set(j,census2);
                     censusCSVList.set(j+1,census1);
                 }

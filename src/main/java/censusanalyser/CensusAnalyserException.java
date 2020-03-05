@@ -2,7 +2,7 @@ package censusanalyser;
 
 public class CensusAnalyserException extends RuntimeException {
     enum ExceptionType {
-        CENSUS_FILE_PROBLEM,NO_CENSUS_DATA
+        CENSUS_FILE_PROBLEM, COUNTRY_NOT_FOUND, NO_CENSUS_DATA
         //UNABLE_TO_PASS
     }
 
