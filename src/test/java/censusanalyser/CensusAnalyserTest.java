@@ -11,6 +11,8 @@ public class CensusAnalyserTest {
     private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IndiaStateCensusData.csv";
     private static final String INDIAN_STATE_CSV_FILE_PATH = "./src/test/resources/IndiaStateCode.csv";
+    private static final String US_STATE_CSV_FILE_PATH = "./src/test/resources/USCensusData.csv";
+
 
   /*  private  static CensusAnalyser censusAnalyser;
     @BeforeClass
@@ -58,5 +60,13 @@ public class CensusAnalyserTest {
         String stateWiseSortedCensusData = censusAnalyser.getStateWiseSortedCensusData();
         IndianCensusCSV[] indianCensusCSV = new Gson().fromJson(stateWiseSortedCensusData, IndianCensusCSV[].class);
         Assert.assertEquals("Andhra Pradesh",indianCensusCSV[0].state);
+    }
+    @Test
+    public void givenUSCensus_CSVFile_Returns_CorrectRecords() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            int numOfRecords = censusAnalyser.loadUSCensusData(US_STATE_CSV_FILE_PATH);
+            Assert.assertEquals(51,numOfRecords);
+        } catch (CensusAnalyserException e) { }
     }
 }
