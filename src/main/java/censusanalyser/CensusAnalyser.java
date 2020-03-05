@@ -41,15 +41,17 @@ public class CensusAnalyser {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<IndianCensusCode> censusCSVIterator = csvBuilder.getCSVIterator(reader, IndianCensusCode.class);
             Iterable<IndianCensusCode> censusCodeIterable=() -> censusCSVIterator;
-
-            while (censusCSVIterator.hasNext()){
+            StreamSupport.stream(censusCodeIterable.spliterator(),false)
+                                .filter(csvState -> censusCSVMap.get(csvState.stateName)!=null)
+                    .forEach(csvState -> censusCSVMap.get(csvState.stateName).stateCode=csvState.stateName);
+            /*while (censusCSVIterator.hasNext()){
                 IndianCensusCode indianCensusCode= censusCSVIterator.next();
                 IndianCensusDTO indianCensusDTO =censusCSVMap.get(indianCensusCode.stateCode);
                 if (indianCensusDTO == null){
                     continue;
                 }
                 indianCensusDTO.stateCode=indianCensusCode.stateCode;
-            }
+            }*/
 
             return censusCSVMap.size();
            // return this.getCount(censusCSVIterator);

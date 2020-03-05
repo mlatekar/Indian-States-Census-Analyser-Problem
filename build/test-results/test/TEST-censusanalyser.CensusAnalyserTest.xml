@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="censusanalyser.CensusAnalyserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-03-05T05:14:42" hostname="admin1-Lenovo-Product" time="0.333">
+<testsuite name="censusanalyser.CensusAnalyserTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-03-05T05:18:00" hostname="admin1-Lenovo-Product" time="0.325">
   <properties/>
-  <testcase name="givenIndianCensusCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.179"/>
-  <testcase name="givenIndiaCensusData_WithWrongFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.004"/>
-  <testcase name="givenIndiaCSVData_WhenSortedState_ShouldReturn_Sorted" classname="censusanalyser.CensusAnalyserTest" time="0.094"/>
-  <testcase name="loadThe_Indian_States_Code_Information_from_csvFile" classname="censusanalyser.CensusAnalyserTest" time="0.056"/>
+  <testcase name="givenIndianCensusCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.173"/>
+  <testcase name="givenIndiaCensusData_WithWrongFile_ShouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.006"/>
+  <testcase name="givenIndiaCSVData_WhenSortedState_ShouldReturn_Sorted" classname="censusanalyser.CensusAnalyserTest" time="0.099"/>
+  <testcase name="loadThe_Indian_States_Code_Information_from_csvFile" classname="censusanalyser.CensusAnalyserTest" time="0.047"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
