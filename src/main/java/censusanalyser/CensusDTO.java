@@ -13,7 +13,7 @@ public class CensusDTO {
          state = indianCensusCSV.state;
          population = indianCensusCSV.population;
          totalArea = indianCensusCSV.areaInSqKm;
-         populationDensity = indianCensusCSV.densityPerSqKm;
+         populationDensity = indianCensusCSV.populationDensity;
     }
     public CensusDTO(USCensusCSV usCensusCSV) {
 

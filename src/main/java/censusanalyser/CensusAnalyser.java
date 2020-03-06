@@ -2,13 +2,8 @@ package censusanalyser;
 
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 public class CensusAnalyser {
 
@@ -20,7 +15,7 @@ public class CensusAnalyser {
     }
     public enum Country{INDIA,US;}
     public int loadCensusData(Country country,String... csvFilePath) throws CensusAnalyserException {
-        censusCSVMap=new CensusLoader().loadCensusData(country,csvFilePath);
+        censusCSVMap=CensusAdapterFactory.getCensusData(country,csvFilePath);
         return censusCSVMap.size();
     }
 
@@ -32,6 +27,62 @@ public class CensusAnalyser {
         }
 
         Comparator<CensusDTO> censusCodeComparator=Comparator.comparing(census -> census.state);
+        censusCSVList =censusCSVMap.values().stream().collect(Collectors.toList());
+
+        this.sort(censusCodeComparator);
+        String sortedStateCensus=new Gson().toJson(censusCSVList);
+        return sortedStateCensus;
+    }
+
+
+
+
+    public String getStatePopulationWiseSortedCensusData() throws CensusAnalyserException {
+        if(censusCSVMap ==null || censusCSVMap.size() == 0) {
+            throw new CensusAnalyserException("No Census Data",CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CensusDTO> censusCodeComparator=Comparator.comparing(census -> census.population);
+        censusCSVList =censusCSVMap.values().stream().collect(Collectors.toList());
+
+        this.sort(censusCodeComparator);
+        String sortedStateCensus=new Gson().toJson(censusCSVList);
+        return sortedStateCensus;
+    }
+
+    public String getStateDensityWiseSortedCensusData() {
+        if(censusCSVMap ==null || censusCSVMap.size() == 0) {
+            throw new CensusAnalyserException("No Census Data",CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CensusDTO> censusCodeComparator=Comparator.comparing(census -> census.populationDensity);
+        censusCSVList =censusCSVMap.values().stream().collect(Collectors.toList());
+
+        this.sort(censusCodeComparator);
+        String sortedStateCensus=new Gson().toJson(censusCSVList);
+        return sortedStateCensus;
+    }
+
+
+
+
+
+    public String getUSStateWiseSortedCensusData() throws CensusAnalyserException {
+        if(censusCSVMap ==null || censusCSVMap.size() == 0) {
+            throw new CensusAnalyserException("No Census Data",CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+
+        Comparator<CensusDTO> censusCodeComparator=Comparator.comparing(census -> census.state);
+        censusCSVList =censusCSVMap.values().stream().collect(Collectors.toList());
+
+        this.sort(censusCodeComparator);
+        String sortedStateCensus=new Gson().toJson(censusCSVList);
+        return sortedStateCensus;
+    }
+    public String getUSPopulationWiseSortedCensusData() throws CensusAnalyserException {
+        if(censusCSVMap ==null || censusCSVMap.size() == 0) {
+            throw new CensusAnalyserException("No Census Data",CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+
+        Comparator<CensusDTO> censusCodeComparator=Comparator.comparing(census -> census.population);
         censusCSVList =censusCSVMap.values().stream().collect(Collectors.toList());
 
         this.sort(censusCodeComparator);

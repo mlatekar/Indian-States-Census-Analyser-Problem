@@ -13,13 +13,27 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class CensusLoader {
+public class IndianCensusAdapter extends CensusAdapter {
     Map<String, CensusDTO> censusCSVMap = new HashMap<>();
+
+    @Override
+    public Map<String, CensusDTO> loadCensusData(String[] csvFilePath) {
+        Map<String, CensusDTO> censusCSVMap=super.loadCensusData(IndianCensusCSV.class,csvFilePath[0]);
+        this.loadIndianCensusCode(censusCSVMap,csvFilePath[1]);
+        return censusCSVMap;
+    }
+    public Map<String, CensusDTO> loadCensusData(CensusAnalyser.Country country, String[] csvFilePath) {
+        if (country.equals(CensusAnalyser.Country.INDIA)) {
+            return this.loadCensusData(IndianCensusCSV.class, csvFilePath);
+        } else if (country.equals(CensusAnalyser.Country.US)) {
+            return this.loadCensusData(USCensusCSV.class, csvFilePath);
+        }else throw new CensusAnalyserException("Incorrect  country name",
+                CensusAnalyserException.ExceptionType.COUNTRY_NOT_FOUND);
+    }
 
     public <E> Map<String, CensusDTO> loadCensusData(Class<E> csvClass, String... csvFilePath) {
 
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath[0]));) {
-            // new csvbuilderfactory();  create class add then createcsvbuilder(); create local variable
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<E> censusCSVIterator = csvBuilder.getCSVIterator(reader, csvClass);
             Iterable<E> censusCodeIterable = () -> censusCSVIterator;
@@ -53,15 +67,5 @@ public class CensusLoader {
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
-    }
-
-
-    public Map<String, CensusDTO> loadCensusData(CensusAnalyser.Country country, String[] csvFilePath) {
-        if (country.equals(CensusAnalyser.Country.INDIA)) {
-            return this.loadCensusData(IndianCensusCSV.class, csvFilePath);
-        } else if (country.equals(CensusAnalyser.Country.US)) {
-            return this.loadCensusData(USCensusCSV.class, csvFilePath);
-        }else throw new CensusAnalyserException("Incorrect  country name",
-                        CensusAnalyserException.ExceptionType.COUNTRY_NOT_FOUND);
     }
 }
