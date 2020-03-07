@@ -12,8 +12,8 @@ public class CensusDTO {
 
          state = indianCensusCSV.state;
          population = indianCensusCSV.population;
-         totalArea = indianCensusCSV.areaInSqKm;
-         populationDensity = indianCensusCSV.populationDensity;
+         totalArea = indianCensusCSV.totalArea;
+        populationDensity = indianCensusCSV.populationDensity;
     }
     public CensusDTO(USCensusCSV usCensusCSV) {
 
@@ -21,6 +21,6 @@ public class CensusDTO {
         population = usCensusCSV.population;
         totalArea = usCensusCSV.totalArea;
         populationDensity = usCensusCSV.populationDensity;
-        stateCode=usCensusCSV.state_id;
+        stateCode=usCensusCSV.stateCode;
     }
 }

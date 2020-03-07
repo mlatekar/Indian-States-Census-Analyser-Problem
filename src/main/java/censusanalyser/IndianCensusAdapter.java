@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class IndianCensusAdapter extends CensusAdapter {
@@ -62,7 +61,7 @@ public class IndianCensusAdapter extends CensusAdapter {
             Iterable<IndianCensusCode> censusCodeIterable = () -> censusCSVIterator;
             StreamSupport.stream(censusCodeIterable.spliterator(), false)
                     .filter(csvState -> censusCSVMap.get(csvState.stateName) != null)
-                    .forEach(csvState -> censusCSVMap.get(csvState.stateName).stateCode = csvState.stateName);
+                    .forEach(csvState -> censusCSVMap.get(csvState.stateName).stateCode = csvState.stateCode);
             return censusCSVMap.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
